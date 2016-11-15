@@ -4,7 +4,6 @@ import './App.css';
 import Counter from './Counter';
 
 export default function App({value, onIncrement, onDecrement}) {
-  console.log(value);
   return (
     <div className="App">
       <div className="App-header">
@@ -16,8 +15,8 @@ export default function App({value, onIncrement, onDecrement}) {
       </p>
       <Counter
         value={value}
-        onIncrement={() =>onIncrement()}
-        onDecrement={() => onDecrement()} />
+        onIncrement={onIncrement}
+        onDecrement={onDecrement} />
     </div>
   );
 }
