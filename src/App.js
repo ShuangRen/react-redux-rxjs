@@ -1,22 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Counter from './Counter';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import Container from './Container';
+import Home from './Home';
+import Logout from './Logout';
+import User from './User';
+import Login from './Login';
 
-export default function App({value, onIncrement, onDecrement}) {
+import './App.css';
+
+// TODO separate on a different file
+const NotFound = () => <h3>Page not found!</h3>;
+
+export default function App({store}) {
   return (
-    <div className="App">
-      <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h2>Welcome to React</h2>
-      </div>
-      <p className="App-intro">
-        Save to reload
-      </p>
-      <Counter
-        value={value}
-        onIncrement={onIncrement}
-        onDecrement={onDecrement} />
-    </div>
+    <Router history={hashHistory}>
+      <Route path='/' component={Container}>
+        <IndexRoute component={Home} />
+        <Route path='logout' component={Logout} />
+        <Route path='user' component={User} />
+      </Route>
+      <Route path='/login' component={Login} />
+      <Route path='*' component={NotFound} />
+    </Router>
   );
 }
