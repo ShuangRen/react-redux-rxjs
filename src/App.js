@@ -21,6 +21,7 @@ export default function App({store}) {
         <Route path='logout' component={Logout} />
         <Route path='user' component={User} onEnter={requireAuth} />
       </Route>
+      <Route path='/login' component={Login} />
       <Route path='*' component={NotFound} />
     </Router>
   );

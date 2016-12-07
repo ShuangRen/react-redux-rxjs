@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { requestAuth, isLogged } from './utils/Logged';
 
-export default function Login() {
-  return (
-    <div>
-      <form>
-        <label><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required />
-        <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required />
-        <button type="submit">Login</button>
-        <button type="button">Cancel</button>
-      </form>
-    </div>
-  );
+class Login extends Component {
+  constructor() {
+    super();
+    this.login = this.login.bind(this);
+    this.state = {
+      isLogged: isLogged()
+    }
+  }
+
+  login() {
+    requestAuth('admin', 'changeme');
+  }
+
+  render() {
+    return (
+      <div>
+        if (this.state.isLogged) {
+          <p>You are logged</p>
+        } else {
+          <div>
+            <p>Click the button to log in</p>
+            <button onClick={this.login()}>Login</button>
+          </div>
+        }
+      </div>
+    );
+  }
 }
+
+export default Login;
