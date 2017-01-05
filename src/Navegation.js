@@ -2,19 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import Login from './Login';
 import { existSessionId } from './utils/session';
 
 class RestrictedLinks extends Component {
   render() {
     if (!existSessionId()) {
-      return (
-        <Nav pullRight>
-          <NavItem>
-            <Login />
-          </NavItem>
-        </Nav>
-      );
+      return null;
     }
     return (
       <Nav>
@@ -36,7 +29,7 @@ const Navegation = () => (
   <Navbar>
     <Navbar.Header>
       <Navbar.Brand>
-        <Link to='/'>Home</Link>
+        <Link to='/'>React App</Link>
       </Navbar.Brand>
     </Navbar.Header>
     <RestrictedLinks />
